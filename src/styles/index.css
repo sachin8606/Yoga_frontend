@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #7C3AED;
+    --secondary: #F59E0B;
+    --background: #F8F9FA;
+    --text: #1F2937;
+  }
+
+  body {
+    @apply bg-background text-text font-sans;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+} 
