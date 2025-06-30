@@ -153,7 +153,7 @@ const Courses = () => {
           </motion.div>
 
           <div className="space-y-12">
-            {courses.map((course, index) => (
+            {courses.map((course) => (
               <motion.div
                 key={course.title}
                 initial={{ opacity: 0 }}
