@@ -43,8 +43,6 @@ const Contact = () => {
           </div>
           
           {/* Floating Elements */}
-          <div className="absolute top-16 right-16 text-5xl text-white opacity-20 animate-pulse">🙏</div>
-          <div className="absolute bottom-16 left-16 text-4xl text-white opacity-20 animate-pulse">🕉️</div>
         </div>
         
         <div className="relative z-10 container-custom h-full flex items-center">

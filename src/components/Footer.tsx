@@ -16,7 +16,7 @@ const Footer = () => {
         { name: '200 Hour YTT', url: '/courses' },
         { name: '300 Hour YTT', url: '/courses' },
         { name: 'Meditation Intensive', url: '/courses' },
-        { name: 'Workshops', url: '/courses' },
+        { name: 'Workshops', url: '/workshops' },
       ],
     },
     {
@@ -31,8 +31,8 @@ const Footer = () => {
     {
       title: 'Information',
       links: [
-        { name: 'FAQ', url: '/contact' },
-        { name: 'Accommodation', url: '/contact' },
+        { name: 'FAQ', url: '/faq' },
+        { name: 'Accommodation', url: '/accommodation' },
         { name: 'Schedule', url: '/courses' },
         { name: 'Contact Us', url: '/contact' },
       ],

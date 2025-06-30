@@ -93,7 +93,7 @@ const Courses = () => {
   ];
 
   return (
-    <div className="pt-20">
+    <div className="pt-20" style={{ scrollBehavior: 'smooth' }}>
       {/* Hero Section */}
       <section className="relative h-[60vh] bg-primary overflow-hidden">
         {/* Sacred Background Pattern */}
@@ -156,10 +156,11 @@ const Courses = () => {
             {courses.map((course, index) => (
               <motion.div
                 key={course.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-500"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 will-change-transform"
               >
                 <div className="grid md:grid-cols-3 gap-0">
                   {/* Course Info */}
@@ -219,16 +220,12 @@ const Courses = () => {
                       </p>
                       
                       <Link to="/contact">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="w-full bg-primary text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary-dark transition-colors duration-300 mb-4"
-                        >
+                        <button className="w-full bg-primary text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary-dark transition-colors duration-200 mb-4 transform hover:scale-105 active:scale-95">
                           Enroll Now
-                        </motion.button>
+                        </button>
                       </Link>
                       
-                      <button className="w-full border-2 border-primary text-primary py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary hover:text-white transition-colors duration-300">
+                      <button className="w-full border-2 border-primary text-primary py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary hover:text-white transition-colors duration-200 transform hover:scale-105 active:scale-95">
                         Download Brochure
                       </button>
                     </div>
@@ -283,10 +280,11 @@ const Courses = () => {
             ].map((feature, index) => (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="text-center p-6 rounded-2xl bg-ivory-50 hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.2, delay: index * 0.05 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="text-center p-6 rounded-2xl bg-ivory-50 hover:shadow-lg transition-shadow duration-150 will-change-transform"
               >
                 <div className="text-5xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-serif mb-3 text-ivory-900">{feature.title}</h3>
@@ -314,22 +312,14 @@ const Courses = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all duration-300 shadow-lg"
-                >
+                <button className="bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors duration-200 shadow-lg transform hover:scale-105 active:scale-95">
                   Apply Now
-                </motion.button>
+                </button>
               </Link>
               <Link to="/about">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-primary transition-all duration-300"
-                >
+                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-primary transition-colors duration-200 transform hover:scale-105 active:scale-95">
                   Meet Our Teachers
-                </motion.button>
+                </button>
               </Link>
             </div>
           </motion.div>

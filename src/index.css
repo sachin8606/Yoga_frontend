@@ -60,9 +60,33 @@ img, video, svg {
   overflow: hidden;
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling and performance optimizations */
 html {
   scroll-behavior: smooth;
+}
+
+/* Performance optimizations for smooth scrolling */
+* {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Optimize animations and transitions */
+.will-change-transform {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -150,4 +174,88 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom prose styling for blog content */
+.prose {
+  color: #4A453C;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: 'Cormorant Garamond', serif;
+  color: #3C3530;
+  font-weight: 500;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+  color: #6B5B42;
+}
+
+.prose ul,
+.prose ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin: 0.5rem 0;
+  color: #6B5B42;
+}
+
+.prose strong {
+  color: #3C3530;
+  font-weight: 600;
+}
+
+.prose blockquote {
+  border-left: 4px solid #8B7355;
+  background-color: #FFFEF7;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.125rem;
+  color: #4A453C;
+}
+
+.prose a {
+  color: #8B7355;
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
 }

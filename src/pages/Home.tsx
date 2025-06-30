@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import YogaVideo from '../components/YogaVideo';
 
 const Home = () => {
   const practices = [
@@ -206,11 +207,11 @@ const Home = () => {
             {/* Quick Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">500+</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">10+</div>
                 <div className="text-xs md:text-sm opacity-80">Certified Teachers</div>
               </div>
               <div className="text-center">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">50+</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">1+</div>
                 <div className="text-xs md:text-sm opacity-80">Countries</div>
               </div>
               <div className="text-center">
@@ -261,6 +262,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Yoga Video Section */}
+      <YogaVideo />
 
       {/* Practices Section */}
       <section className="py-16 md:py-20 bg-ivory-50 overflow-hidden">
