@@ -186,126 +186,205 @@ const HowToReach = () => {
 
       {/* Interactive Journey Layout */}
       <div className="container-custom">
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          {/* Journey Map - Left/Center */}
-          <div className="lg:col-span-2">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-display text-primary">Your Journey Map</h2>
-                <motion.button
-                  onClick={resetJourney}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-secondary text-white rounded-full hover:bg-secondary/90 transition-colors flex-shrink-0 text-sm"
-                >
-                  Reset 🔄
-                </motion.button>
-              </div>
-
-              {/* SVG Journey Map */}
-              <div className="relative bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-4 overflow-x-auto">
-                <svg
-                  ref={svgRef}
-                  viewBox="0 0 1200 700"
-                  className="w-full h-80 lg:h-96"
-                  style={{ minWidth: '600px' }}
-                >
-                  {/* Draw connections between steps */}
-                  {Object.values(pathSteps).map(step => 
-                    step.connections.map(connectionId => {
-                      const connectedStep = pathSteps[connectionId];
-                      if (!connectedStep) return null;
-                      
-                      const isActive = selectedPath.includes(step.id) && selectedPath.includes(connectionId);
-                      const isCompleted = completedSteps.has(step.id) && completedSteps.has(connectionId);
-                      
-                      return (
-                        <motion.line
-                          key={`${step.id}-${connectionId}`}
-                          x1={step.position.x}
-                          y1={step.position.y}
-                          x2={connectedStep.position.x}
-                          y2={connectedStep.position.y}
-                          stroke={isActive ? "#8B5CF6" : isCompleted ? "#10B981" : "#E5E7EB"}
-                          strokeWidth={isActive ? "4" : "2"}
-                          strokeDasharray={isActive ? "10,5" : "none"}
-                          initial={{ pathLength: 0 }}
-                          animate={{ pathLength: isCompleted ? 1 : 0 }}
-                          transition={{ duration: 1, ease: "easeInOut" }}
-                        />
-                      );
-                    })
-                  )}
-
-                  {/* Draw step nodes */}
-                  {Object.values(pathSteps).map(step => {
-                    const isActive = currentStep === step.id;
-                    const isCompleted = completedSteps.has(step.id);
-                    
-                    return (
-                      <g key={step.id}>
-                                            {/* Step circle */}
-                    <motion.circle
-                      cx={step.position.x}
-                      cy={step.position.y}
-                      r={isActive ? "45" : "35"}
-                      fill={
-                        step.type === 'destination' ? "#10B981" :
-                        step.type === 'start' ? "#8B5CF6" :
-                        isActive ? "#F59E0B" :
-                        isCompleted ? "#10B981" :
-                        "#E5E7EB"
-                      }
-                      stroke={isActive ? "#F59E0B" : "white"}
-                      strokeWidth="4"
-                      className="cursor-pointer drop-shadow-lg"
-                      onClick={() => handleStepSelect(step.id)}
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.9 }}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.1 }}
-                    />
-                    
-                    {/* Step icon */}
-                    <text
-                      x={step.position.x}
-                      y={step.position.y + 12}
-                      textAnchor="middle"
-                      fontSize={isActive ? "36" : "28"}
-                      className="pointer-events-none select-none"
-                    >
-                      {step.icon}
-                    </text>
-                    
-                    {/* Step label */}
-                    <text
-                      x={step.position.x}
-                      y={step.position.y + 60}
-                      textAnchor="middle"
-                      fontSize="12"
-                      fill="#374151"
-                      className="pointer-events-none select-none font-semibold"
-                      style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.8)' }}
-                    >
-                      {step.title}
-                    </text>
-                      </g>
-                    );
-                  })}
-                </svg>
-              </div>
+        {/* Mobile: Stacked layout for better visibility */}
+        <div className="lg:hidden mb-8 space-y-6">
+          {/* Current Step Details - Top Section */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-display text-primary">Current Step</h2>
+              <motion.button
+                onClick={resetJourney}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-4 py-2 bg-secondary text-white rounded-full hover:bg-secondary/90 transition-colors text-sm"
+              >
+                Reset 🔄
+              </motion.button>
             </div>
-          </div>
 
-          {/* Current Step Details - Right Sidebar */}
-          <div className="lg:col-span-1">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="text-center"
+              >
+                <div className="text-6xl mb-4">{currentStepData.icon}</div>
+                <h3 className="text-2xl font-display text-primary mb-4">{currentStepData.title}</h3>
+                <p className="text-base text-ivory-700 leading-relaxed mb-6">
+                  {currentStepData.description}
+                </p>
+
+                {/* Decision Options */}
+                {currentStepData.options && (
+                  <div className="space-y-3">
+                    {currentStepData.options.left && (
+                      <motion.button
+                        onClick={() => handleDirectionChoice(currentStepData.options!.left!.nextStep)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg text-base font-medium"
+                      >
+                        <span className="text-xl mr-3">👈</span>
+                        {currentStepData.options.left.text}
+                      </motion.button>
+                    )}
+                    
+                    {currentStepData.options.right && (
+                      <motion.button
+                        onClick={() => handleDirectionChoice(currentStepData.options!.right!.nextStep)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full flex items-center justify-center px-6 py-4 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full shadow-lg text-base font-medium"
+                      >
+                        {currentStepData.options.right.text}
+                        <span className="text-xl ml-3">👉</span>
+                      </motion.button>
+                    )}
+                  </div>
+                )}
+
+                {/* Next Steps for non-decision points */}
+                {!currentStepData.options && currentStepData.connections.length > 0 && (
+                  <div className="text-center">
+                    <motion.button
+                      onClick={() => handleDirectionChoice(currentStepData.connections[0])}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full px-6 py-4 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg text-base font-medium"
+                    >
+                      Continue Journey →
+                    </motion.button>
+                  </div>
+                )}
+
+                {/* Destination reached */}
+                {currentStepData.type === 'destination' && (
+                  <div className="text-center">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", duration: 0.8 }}
+                      className="px-6 py-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-full shadow-lg text-base font-medium"
+                    >
+                      🎉 Journey Complete! 🎉
+                    </motion.div>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Journey Map - Bottom Section */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6">
+            <h2 className="text-xl font-display text-primary mb-4">Interactive Map</h2>
+            
+            <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-4 overflow-x-auto">
+              <svg
+                ref={svgRef}
+                viewBox="0 0 1200 700"
+                className="w-full h-80"
+                style={{ minWidth: '600px' }}
+              >
+                {/* Draw connections between steps */}
+                {Object.values(pathSteps).map(step => 
+                  step.connections.map(connectionId => {
+                    const connectedStep = pathSteps[connectionId];
+                    if (!connectedStep) return null;
+                    
+                    const isActive = selectedPath.includes(step.id) && selectedPath.includes(connectionId);
+                    const isCompleted = completedSteps.has(step.id) && completedSteps.has(connectionId);
+                    
+                    return (
+                      <motion.line
+                        key={`${step.id}-${connectionId}`}
+                        x1={step.position.x}
+                        y1={step.position.y}
+                        x2={connectedStep.position.x}
+                        y2={connectedStep.position.y}
+                        stroke={isActive ? "#8B5CF6" : isCompleted ? "#10B981" : "#E5E7EB"}
+                        strokeWidth={isActive ? "6" : "3"}
+                        strokeDasharray={isActive ? "15,8" : "none"}
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: isCompleted ? 1 : 0 }}
+                        transition={{ duration: 1, ease: "easeInOut" }}
+                      />
+                    );
+                  })
+                )}
+
+                {/* Draw step nodes */}
+                {Object.values(pathSteps).map(step => {
+                  const isActive = currentStep === step.id;
+                  const isCompleted = completedSteps.has(step.id);
+                  
+                  return (
+                    <g key={step.id}>
+                      {/* Step circle */}
+                      <motion.circle
+                        cx={step.position.x}
+                        cy={step.position.y}
+                        r={isActive ? "50" : "40"}
+                        fill={
+                          step.type === 'destination' ? "#10B981" :
+                          step.type === 'start' ? "#8B5CF6" :
+                          isActive ? "#F59E0B" :
+                          isCompleted ? "#10B981" :
+                          "#E5E7EB"
+                        }
+                        stroke={isActive ? "#F59E0B" : "white"}
+                        strokeWidth="4"
+                        className="cursor-pointer drop-shadow-lg"
+                        onClick={() => handleStepSelect(step.id)}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.1 }}
+                      />
+                      
+                      {/* Step icon */}
+                      <text
+                        x={step.position.x}
+                        y={step.position.y + 12}
+                        textAnchor="middle"
+                        fontSize={isActive ? "40" : "32"}
+                        className="pointer-events-none select-none"
+                      >
+                        {step.icon}
+                      </text>
+                      
+                      {/* Step label */}
+                      <text
+                        x={step.position.x}
+                        y={step.position.y + 70}
+                        textAnchor="middle"
+                        fontSize="14"
+                        fill="#374151"
+                        className="pointer-events-none select-none font-semibold"
+                        style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.8)' }}
+                      >
+                        {step.title}
+                      </text>
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: Original layout */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-12">
+          {/* Current Step Details - Desktop Right Sidebar */}
+          <div className="lg:order-2 lg:col-span-1">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentStep}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
                 className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6 sticky top-24"
               >
                 <div className="text-center mb-6">
@@ -374,6 +453,117 @@ const HowToReach = () => {
                 )}
               </motion.div>
             </AnimatePresence>
+          </div>
+
+          {/* Journey Map - Desktop Left */}
+          <div className="lg:order-1 lg:col-span-2">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-4 md:p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-display text-primary">Your Journey Map</h2>
+                <motion.button
+                  onClick={resetJourney}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-4 py-2 bg-secondary text-white rounded-full hover:bg-secondary/90 transition-colors text-sm"
+                >
+                  Reset 🔄
+                </motion.button>
+              </div>
+
+              {/* SVG Journey Map */}
+              <div className="relative bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-4 overflow-x-auto">
+                <svg
+                  ref={svgRef}
+                  viewBox="0 0 1200 700"
+                  className="w-full h-96"
+                  style={{ minWidth: '800px' }}
+                >
+                  {/* Draw connections between steps */}
+                  {Object.values(pathSteps).map(step => 
+                    step.connections.map(connectionId => {
+                      const connectedStep = pathSteps[connectionId];
+                      if (!connectedStep) return null;
+                      
+                      const isActive = selectedPath.includes(step.id) && selectedPath.includes(connectionId);
+                      const isCompleted = completedSteps.has(step.id) && completedSteps.has(connectionId);
+                      
+                      return (
+                        <motion.line
+                          key={`${step.id}-${connectionId}`}
+                          x1={step.position.x}
+                          y1={step.position.y}
+                          x2={connectedStep.position.x}
+                          y2={connectedStep.position.y}
+                          stroke={isActive ? "#8B5CF6" : isCompleted ? "#10B981" : "#E5E7EB"}
+                          strokeWidth={isActive ? "4" : "2"}
+                          strokeDasharray={isActive ? "10,5" : "none"}
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: isCompleted ? 1 : 0 }}
+                          transition={{ duration: 1, ease: "easeInOut" }}
+                        />
+                      );
+                    })
+                  )}
+
+                  {/* Draw step nodes */}
+                  {Object.values(pathSteps).map(step => {
+                    const isActive = currentStep === step.id;
+                    const isCompleted = completedSteps.has(step.id);
+                    
+                    return (
+                      <g key={step.id}>
+                        {/* Step circle */}
+                        <motion.circle
+                          cx={step.position.x}
+                          cy={step.position.y}
+                          r={isActive ? "45" : "35"}
+                          fill={
+                            step.type === 'destination' ? "#10B981" :
+                            step.type === 'start' ? "#8B5CF6" :
+                            isActive ? "#F59E0B" :
+                            isCompleted ? "#10B981" :
+                            "#E5E7EB"
+                          }
+                          stroke={isActive ? "#F59E0B" : "white"}
+                          strokeWidth="4"
+                          className="cursor-pointer drop-shadow-lg"
+                          onClick={() => handleStepSelect(step.id)}
+                          whileHover={{ scale: 1.15 }}
+                          whileTap={{ scale: 0.9 }}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.1 }}
+                        />
+                        
+                        {/* Step icon */}
+                        <text
+                          x={step.position.x}
+                          y={step.position.y + 12}
+                          textAnchor="middle"
+                          fontSize={isActive ? "36" : "28"}
+                          className="pointer-events-none select-none"
+                        >
+                          {step.icon}
+                        </text>
+                        
+                        {/* Step label */}
+                        <text
+                          x={step.position.x}
+                          y={step.position.y + 60}
+                          textAnchor="middle"
+                          fontSize="12"
+                          fill="#374151"
+                          className="pointer-events-none select-none font-semibold"
+                          style={{ textShadow: '1px 1px 2px rgba(255,255,255,0.8)' }}
+                        >
+                          {step.title}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
 
