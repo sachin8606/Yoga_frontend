@@ -12,6 +12,7 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Blogs from './pages/Blogs';
 import BlogPost from './pages/BlogPost';
+import HowToReach from './pages/HowToReach';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/how-to-reach" element={<HowToReach />} />
           </Routes>
         </main>
         <Footer />

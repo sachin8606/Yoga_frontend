@@ -33,7 +33,7 @@ const Footer = () => {
       links: [
         { name: 'FAQ', url: '/faq' },
         { name: 'Accommodation', url: '/accommodation' },
-        { name: 'Schedule', url: '/courses' },
+        { name: 'How to Reach', url: '/how-to-reach' },
         { name: 'Contact Us', url: '/contact' },
       ],
     },
@@ -91,7 +91,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <h4 className="text-lg font-serif font-medium mb-4 text-ivory-900">{section.title}</h4>
+              <h4 className="text-lg font-display font-medium mb-4 text-ivory-900">{section.title}</h4>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>

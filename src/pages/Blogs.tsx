@@ -164,7 +164,7 @@ const Blogs = () => {
             transition={{ duration: 0.8 }}
             className="text-white max-w-4xl"
           >
-            <h1 className="text-5xl md:text-6xl font-serif font-light mb-6 tracking-wide">
+            <h1 className="text-5xl md:text-6xl font-display font-light mb-6 tracking-wide">
               Yoga Wisdom & Insights
             </h1>
             <p className="text-xl md:text-2xl opacity-95 font-light leading-relaxed">
@@ -230,7 +230,7 @@ const Blogs = () => {
                   </div>
                   
                   <div className="p-6">
-                    <h2 className="text-xl font-serif text-ivory-900 mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                    <h2 className="text-xl font-display text-ivory-900 mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2">
                       {post.title}
                     </h2>
                     
@@ -277,7 +277,7 @@ const Blogs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-serif font-light mb-6 tracking-wide">
+            <h2 className="text-4xl md:text-5xl font-display font-light mb-6 tracking-wide">
               Stay Connected with Wisdom
             </h2>
             <p className="text-xl opacity-95 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
