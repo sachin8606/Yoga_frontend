@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Blogs = () => {
+  const [selectedCategory, setSelectedCategory] = useState('All');
   // Helper function to get category gradient
   const getCategoryGradient = (category: string) => {
     const gradients = {
@@ -136,6 +138,11 @@ const Blogs = () => {
 
   const categories = ['All', 'Philosophy', 'Practice', 'Meditation', 'Training', 'Ayurveda', 'Experience', 'Anatomy', 'Travel'];
 
+  // Filter blog posts based on selected category
+  const filteredBlogPosts = selectedCategory === 'All' 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === selectedCategory);
+
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -191,7 +198,12 @@ const Blogs = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="px-6 py-3 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300 font-medium"
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-6 py-3 rounded-full border-2 transition-all duration-300 font-medium transform hover:scale-105 active:scale-95 ${
+                    selectedCategory === category
+                      ? 'bg-primary text-white border-primary shadow-lg'
+                      : 'border-primary text-primary hover:bg-primary hover:text-white'
+                  }`}
                 >
                   {category}
                 </motion.button>
@@ -204,8 +216,23 @@ const Blogs = () => {
       {/* Blog Posts Grid */}
       <section className="py-20 bg-ivory-50">
         <div className="container-custom">
+          {/* Results Counter */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <p className="text-ivory-700 font-light">
+              {selectedCategory === 'All' 
+                ? `Showing all ${filteredBlogPosts.length} blog posts`
+                : `Showing ${filteredBlogPosts.length} blog post${filteredBlogPosts.length !== 1 ? 's' : ''} in ${selectedCategory}`
+              }
+            </p>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
+            {filteredBlogPosts.map((post, index) => (
               <motion.article
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -238,27 +265,26 @@ const Blogs = () => {
                       {post.excerpt}
                     </p>
                     
-                    <div className="flex items-center justify-between text-sm text-ivory-600">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-1">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                          <span>{post.author}</span>
-                        </div>
-                        <span>•</span>
+                    <div className="flex flex-col space-y-2 text-sm text-ivory-600">
+                      <div className="flex items-center space-x-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span>{post.author}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-1">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           <span>{post.readTime}</span>
                         </div>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <span>{post.date}</span>
+                        <div className="flex items-center space-x-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          <span>{post.date}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

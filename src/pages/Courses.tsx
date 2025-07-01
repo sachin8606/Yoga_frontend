@@ -111,9 +111,6 @@ const Courses = () => {
             </svg>
           </div>
           
-          {/* Floating Elements */}
-          <div className="absolute top-20 right-20 text-6xl text-white opacity-20 animate-pulse">🪷</div>
-          <div className="absolute bottom-20 left-20 text-5xl text-white opacity-20 animate-pulse">🕉️</div>
         </div>
         
         <div className="relative z-10 container-custom h-full flex items-center">

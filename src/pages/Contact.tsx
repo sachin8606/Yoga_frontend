@@ -171,6 +171,8 @@ const Contact = () => {
                   Submit Application
                 </motion.button>
               </form>
+
+
             </motion.div>
 
             {/* Contact Information */}
@@ -194,7 +196,7 @@ const Contact = () => {
                 <div className="flex items-start space-x-4 p-6 bg-ivory-100 rounded-2xl">
                   <div className="text-3xl">📍</div>
                   <div>
-                    <h3 className="text-xl font-serif text-ivory-900 mb-2">Location</h3>
+                    <h3 className="text-xl font-display text-ivory-900 mb-2">Location</h3>
                     <p className="text-ivory-700 font-light">
                       Sacred Yoga Ashram<br />
                       Tapovan, Rishikesh<br />
@@ -206,7 +208,7 @@ const Contact = () => {
                 <div className="flex items-start space-x-4 p-6 bg-ivory-100 rounded-2xl">
                   <div className="text-3xl">📞</div>
                   <div>
-                    <h3 className="text-xl font-serif text-ivory-900 mb-2">Phone</h3>
+                    <h3 className="text-xl font-display text-ivory-900 mb-2">Phone</h3>
                     <p className="text-ivory-700 font-light">
                       +91 98765 43210<br />
                       +91 87654 32109
@@ -217,7 +219,7 @@ const Contact = () => {
                 <div className="flex items-start space-x-4 p-6 bg-ivory-100 rounded-2xl">
                   <div className="text-3xl">✉️</div>
                   <div>
-                    <h3 className="text-xl font-serif text-ivory-900 mb-2">Email</h3>
+                    <h3 className="text-xl font-display text-ivory-900 mb-2">Email</h3>
                     <p className="text-ivory-700 font-light">
                       info@yogalife-rishikesh.com<br />
                       admissions@yogalife-rishikesh.com
@@ -228,7 +230,7 @@ const Contact = () => {
                 <div className="flex items-start space-x-4 p-6 bg-ivory-100 rounded-2xl">
                   <div className="text-3xl">🌐</div>
                   <div>
-                    <h3 className="text-xl font-serif text-ivory-900 mb-2">Follow Us</h3>
+                    <h3 className="text-xl font-display text-ivory-900 mb-2">Follow Us</h3>
                     <div className="flex space-x-4">
                       <a href="#" className="text-primary hover:text-primary-dark transition-colors">
                         Facebook
@@ -251,23 +253,23 @@ const Contact = () => {
                 </h3>
                 <div className="space-y-3 text-sm opacity-95">
                   <div className="flex items-center space-x-3">
-                    <span className="text-accent text-lg">1.</span>
+                    <span className="text-accent text-lg w-6 flex-shrink-0">1.</span>
                     <span>Submit your application form</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-accent text-lg">2.</span>
+                    <span className="text-accent text-lg w-6 flex-shrink-0">2.</span>
                     <span>Receive confirmation within 24 hours</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-accent text-lg">3.</span>
+                    <span className="text-accent text-lg w-6 flex-shrink-0">3.</span>
                     <span>Complete registration with deposit</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-accent text-lg">4.</span>
+                    <span className="text-accent text-lg w-6 flex-shrink-0">4.</span>
                     <span>Receive pre-course materials</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-accent text-lg">5.</span>
+                    <span className="text-accent text-lg w-6 flex-shrink-0">5.</span>
                     <span>Begin your transformation journey</span>
                   </div>
                 </div>
@@ -329,7 +331,7 @@ const Contact = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="bg-ivory-50 p-6 rounded-2xl hover:shadow-lg transition-shadow duration-300"
               >
-                <h3 className="text-lg font-serif text-ivory-900 mb-3">{faq.question}</h3>
+                <h3 className="text-lg font-display text-ivory-900 mb-3">{faq.question}</h3>
                 <p className="text-ivory-700 font-light leading-relaxed">{faq.answer}</p>
               </motion.div>
             ))}
