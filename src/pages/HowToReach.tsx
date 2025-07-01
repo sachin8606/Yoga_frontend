@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface PathStep {
@@ -241,7 +241,6 @@ const HowToReach = () => {
                   {Object.values(pathSteps).map(step => {
                     const isActive = currentStep === step.id;
                     const isCompleted = completedSteps.has(step.id);
-                    const isVisited = selectedPath.includes(step.id);
                     
                     return (
                       <g key={step.id}>
