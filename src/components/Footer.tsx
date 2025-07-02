@@ -2,12 +2,6 @@ import { motion } from 'framer-motion';
 import YogaLogo from './YogaLogo';
 
 const Footer = () => {
-  const socialLinks = [
-    { name: 'Facebook', url: '#', icon: '📘' },
-    { name: 'Instagram', url: '#', icon: '📸' },
-    { name: 'YouTube', url: '#', icon: '📺' },
-    { name: 'WhatsApp', url: '#', icon: '📱' },
-  ];
 
   const footerLinks = [
     {
@@ -66,20 +60,7 @@ const Footer = () => {
               Email: info@yogalife-rishikesh.com
             </motion.p>
             <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.2 }}
-                  className="text-2xl opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+             
             </div>
           </div>
 

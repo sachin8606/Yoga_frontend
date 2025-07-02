@@ -217,6 +217,134 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* Yoga Alliance Certification Section */}
+      <section className="py-20 bg-ivory-50">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-serif font-light mb-6 tracking-wide text-ivory-900">
+              Internationally Certified
+            </h2>
+            <p className="text-xl text-ivory-700 max-w-3xl mx-auto font-light">
+              Our yoga teacher training programs are fully certified and recognized by Yoga Alliance USA, 
+              ensuring your credentials are accepted worldwide.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Yoga Alliance Certificate */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="bg-white rounded-3xl shadow-2xl p-8 border-8 border-primary/10">
+                <div className="text-center">
+                  {/* Certificate Header */}
+                  <div className="mb-6">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-primary rounded-full mb-4">
+                      <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L3.09 8.26L4 21L12 17L20 21L20.91 8.26L12 2ZM12 4.44L18.18 9.1L17.45 19.5L12 16.5L6.55 19.5L5.82 9.1L12 4.44Z"/>
+                        <path d="M12 6L8.5 12L12 18L15.5 12L12 6Z"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-serif text-primary mb-2">Yoga Alliance</h3>
+                    <p className="text-primary/80 font-semibold">REGISTERED YOGA SCHOOL</p>
+                  </div>
+
+                  {/* Certificate Body */}
+                  <div className="border-t border-b border-primary/20 py-6 mb-6">
+                    <h4 className="text-xl font-serif text-ivory-900 mb-2">YogaLife Rishikesh</h4>
+                    <p className="text-ivory-700 mb-4">This certifies that the above named school is a</p>
+                    <div className="bg-primary/5 rounded-lg p-4 mb-4">
+                      <p className="text-primary font-bold text-lg">RYS 200 & RYS 300</p>
+                      <p className="text-primary/80 text-sm">Registered Yoga School</p>
+                    </div>
+                    <p className="text-ivory-600 text-sm">Registration #YAS-12847</p>
+                  </div>
+
+                  {/* Certificate Footer */}
+                  <div className="text-xs text-ivory-500">
+                    <p>Valid from: January 2019</p>
+                    <p>Location: Rishikesh, Uttarakhand, India</p>
+                  </div>
+
+                  {/* Decorative Elements */}
+                  <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/20"></div>
+                  <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/20"></div>
+                  <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/20"></div>
+                  <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/20"></div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Certification Details */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="text-3xl font-display text-ivory-900 mb-6">What This Means for You</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary text-lg">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-display text-ivory-900 mb-2">Global Recognition</h4>
+                    <p className="text-ivory-700 font-light">Your certification is recognized and accepted by yoga studios worldwide</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary text-lg">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-display text-ivory-900 mb-2">Teaching Qualification</h4>
+                    <p className="text-ivory-700 font-light">Qualified to teach yoga classes in any country that recognizes Yoga Alliance</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary text-lg">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-display text-ivory-900 mb-2">Professional Standards</h4>
+                    <p className="text-ivory-700 font-light">Training meets the highest international standards for yoga teacher education</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary text-lg">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-display text-ivory-900 mb-2">Continuing Education</h4>
+                    <p className="text-ivory-700 font-light">Access to advanced training and continuing education opportunities</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 p-6 bg-primary/5 rounded-xl">
+                <p className="text-primary font-semibold mb-2">Learn More About Yoga Alliance</p>
+                <p className="text-primary/80 text-sm">
+                  Yoga Alliance is the largest nonprofit association representing the yoga community, 
+                  setting standards for yoga teacher training programs worldwide.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

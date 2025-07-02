@@ -76,16 +76,9 @@ const Home = () => {
       name: 'Yoga Alliance',
       description: 'Internationally recognized certification',
       icon: '🏆',
-    },
-    {
-      name: 'Government of India',
-      description: 'Ministry of AYUSH approved',
-      icon: '🇮🇳',
-    },
-    {
-      name: 'Traditional Lineage',
-      description: 'Authentic Himalayan yoga tradition',
-      icon: '⛰️',
+      details: 'RYS 200 & RYS 300 Certified School',
+      registrationNumber: 'YAS-12847',
+      isYogaAlliance: true,
     },
   ];
 
@@ -248,10 +241,10 @@ const Home = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {whyChooseUs.map((item, index) => (
               <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center p-6 rounded-2xl bg-ivory-50 hover:shadow-lg transition-all duration-300"
               >
                 <div className="text-4xl md:text-5xl mb-4">{item.icon}</div>
@@ -288,9 +281,9 @@ const Home = () => {
             {practices.map((practice, index) => (
               <motion.div
                 key={practice.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center p-6 rounded-2xl bg-white hover:shadow-lg transition-all duration-300"
               >
                 <div className="text-4xl md:text-5xl mb-4">{practice.icon}</div>
@@ -381,18 +374,31 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             {certifications.map((cert, index) => (
               <motion.div
                 key={cert.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="text-center p-6 md:p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                className="text-center p-8 md:p-12 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-primary/20 ring-2 ring-primary/10 transform hover:scale-105"
               >
-                <div className="text-5xl md:text-6xl mb-4">{cert.icon}</div>
-                <h3 className="text-lg md:text-xl font-serif mb-3 text-ivory-900">{cert.name}</h3>
-                <p className="text-ivory-700 font-light text-sm md:text-base">{cert.description}</p>
+                <div className="mb-6">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-primary rounded-full mb-4">
+                    <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2L3.09 8.26L4 21L12 17L20 21L20.91 8.26L12 2ZM12 4.44L18.18 9.1L17.45 19.5L12 16.5L6.55 19.5L5.82 9.1L12 4.44Z"/>
+                      <path d="M12 6L8.5 12L12 18L15.5 12L12 6Z"/>
+                    </svg>
+                  </div>
+                  <div className="bg-primary/5 rounded-lg p-4 mb-6">
+                    <p className="text-primary font-semibold text-base">REGISTERED YOGA SCHOOL</p>
+                    <p className="text-primary/80 text-sm font-medium">#{cert.registrationNumber}</p>
+                  </div>
+                </div>
+                
+                <h3 className="text-2xl md:text-3xl font-serif mb-3 text-ivory-900">{cert.name}</h3>
+                <p className="text-ivory-700 font-light text-lg md:text-xl mb-3">{cert.description}</p>
+                <p className="text-ivory-600 font-medium text-base md:text-lg">{cert.details}</p>
               </motion.div>
             ))}
           </div>
@@ -537,12 +543,7 @@ const Home = () => {
                      className="relative"
                    >
                      <div className="text-8xl md:text-9xl mb-8">🧘</div>
-                     <motion.div
-                       initial={{ opacity: 0.5 }}
-                       animate={{ opacity: 0.8 }}
-                       transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
-                       className="absolute inset-0 -m-8 rounded-full bg-primary/10 blur-lg"
-                     />
+                     <div className="absolute inset-0 -m-8 rounded-full bg-primary/10 blur-lg opacity-60" />
                    </motion.div>
 
                   {/* Sanskrit Mantra */}
@@ -595,7 +596,7 @@ const Home = () => {
                   <p className="text-ivory-800 italic font-light mb-3 text-base leading-relaxed">
                     "In stillness, the deepest truths reveal themselves."
                   </p>
-                  <p className="text-accent font-medium text-sm">— Himalayan Teaching</p>
+                  <p className="text-primary font-medium text-sm">— Himalayan Teaching</p>
                 </div>
               </div>
 
