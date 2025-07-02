@@ -377,7 +377,7 @@ const Home = () => {
           <div className="max-w-2xl mx-auto">
             {certifications.map((cert, index) => (
               <motion.div
-                key={cert.name}
+                key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
