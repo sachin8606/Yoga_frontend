@@ -139,13 +139,33 @@ const HowToReach = () => {
     const step = pathSteps[stepId];
     if (!step) return;
 
-    setCurrentStep(stepId);
+    // Only allow clicking on steps that are:
+    // 1. Already completed (can revisit)
+    // 2. Directly connected to the current step (next available steps)
+    const isAlreadyCompleted = completedSteps.has(stepId);
+    const isNextAvailableStep = pathSteps[currentStep]?.connections.includes(stepId);
     
-    if (!selectedPath.includes(stepId)) {
-      setSelectedPath(prev => [...prev, stepId]);
+    if (!isAlreadyCompleted && !isNextAvailableStep) {
+      // Step is not accessible yet - do nothing
+      return;
     }
-    
-    setCompletedSteps(prev => new Set([...prev, stepId]));
+
+    // If it's a previously completed step, just change the current view
+    if (isAlreadyCompleted) {
+      setCurrentStep(stepId);
+      return;
+    }
+
+    // If it's a next available step, proceed with the journey
+    if (isNextAvailableStep) {
+      setCurrentStep(stepId);
+      
+      if (!selectedPath.includes(stepId)) {
+        setSelectedPath((prev: string[]) => [...prev, stepId]);
+      }
+      
+      setCompletedSteps((prev: Set<string>) => new Set([...prev, stepId]));
+    }
   };
 
   const handleDirectionChoice = (nextStepId: string) => {
@@ -318,6 +338,8 @@ const HowToReach = () => {
                 {Object.values(pathSteps).map(step => {
                   const isActive = currentStep === step.id;
                   const isCompleted = completedSteps.has(step.id);
+                  const isNextAvailable = pathSteps[currentStep]?.connections.includes(step.id);
+                  const isClickable = isCompleted || isNextAvailable;
                   
                   return (
                     <g key={step.id}>
@@ -331,14 +353,15 @@ const HowToReach = () => {
                           step.type === 'start' ? "#8B5CF6" :
                           isActive ? "#F59E0B" :
                           isCompleted ? "#10B981" :
+                          isNextAvailable ? "#FCD34D" :
                           "#E5E7EB"
                         }
-                        stroke={isActive ? "#F59E0B" : "white"}
+                        stroke={isActive ? "#F59E0B" : isClickable ? "#059669" : "#D1D5DB"}
                         strokeWidth="4"
-                        className="cursor-pointer drop-shadow-lg"
+                        className={isClickable ? "cursor-pointer drop-shadow-lg" : "cursor-not-allowed opacity-60"}
                         onClick={() => handleStepSelect(step.id)}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileHover={isClickable ? { scale: 1.1 } : {}}
+                        whileTap={isClickable ? { scale: 0.9 } : {}}
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.1 }}
@@ -509,6 +532,8 @@ const HowToReach = () => {
                   {Object.values(pathSteps).map(step => {
                     const isActive = currentStep === step.id;
                     const isCompleted = completedSteps.has(step.id);
+                    const isNextAvailable = pathSteps[currentStep]?.connections.includes(step.id);
+                    const isClickable = isCompleted || isNextAvailable;
                     
                     return (
                       <g key={step.id}>
@@ -522,14 +547,15 @@ const HowToReach = () => {
                             step.type === 'start' ? "#8B5CF6" :
                             isActive ? "#F59E0B" :
                             isCompleted ? "#10B981" :
+                            isNextAvailable ? "#FCD34D" :
                             "#E5E7EB"
                           }
-                          stroke={isActive ? "#F59E0B" : "white"}
+                          stroke={isActive ? "#F59E0B" : isClickable ? "#059669" : "#D1D5DB"}
                           strokeWidth="4"
-                          className="cursor-pointer drop-shadow-lg"
+                          className={isClickable ? "cursor-pointer drop-shadow-lg" : "cursor-not-allowed opacity-60"}
                           onClick={() => handleStepSelect(step.id)}
-                          whileHover={{ scale: 1.15 }}
-                          whileTap={{ scale: 0.9 }}
+                          whileHover={isClickable ? { scale: 1.15 } : {}}
+                          whileTap={isClickable ? { scale: 0.9 } : {}}
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.1 }}
