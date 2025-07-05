@@ -20,6 +20,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-background overflow-x-hidden">
+         {/* Test comment */}
         <ScrollToTop />
         <Navbar />
         <main className="w-full overflow-x-hidden">
