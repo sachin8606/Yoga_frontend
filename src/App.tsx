@@ -13,6 +13,7 @@ import Terms from './pages/Terms';
 import Blogs from './pages/Blogs';
 import BlogPost from './pages/BlogPost';
 import HowToReach from './pages/HowToReach';
+import VideoTestimonials from './pages/VideoTestimonials';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/how-to-reach" element={<HowToReach />} />
+          <Route path="/testimonials" element={<VideoTestimonials />} />
           </Routes>
         </main>
         <Footer />
