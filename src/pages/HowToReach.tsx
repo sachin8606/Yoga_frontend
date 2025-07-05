@@ -184,7 +184,7 @@ const HowToReach = () => {
   const currentStepData = pathSteps[currentStep];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-indigo-50 to-purple-50 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-indigo-50 to-purple-50 pt-20 pb-20">
       {/* Header */}
       <div className="container-custom py-12 text-center">
         <motion.h1
@@ -209,7 +209,7 @@ const HowToReach = () => {
         {/* Mobile: Stacked layout for better visibility */}
         <div className="lg:hidden mb-8 space-y-6">
           {/* Current Step Details - Top Section */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6">
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-6 border border-white/20">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-display text-primary">Current Step</h2>
               <motion.button
@@ -297,7 +297,7 @@ const HowToReach = () => {
           </div>
 
           {/* Journey Map - Bottom Section */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6">
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-6 border border-white/20">
             <h2 className="text-xl font-display text-primary mb-4">Interactive Map</h2>
             
             <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-4 overflow-x-auto">
@@ -408,7 +408,7 @@ const HowToReach = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-6 sticky top-24"
+                className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-6 sticky top-24 border border-white/20"
               >
                 <div className="text-center mb-6">
                   <div className="text-4xl mb-3">{currentStepData.icon}</div>
@@ -480,7 +480,7 @@ const HowToReach = () => {
 
           {/* Journey Map - Desktop Left */}
           <div className="lg:order-1 lg:col-span-2">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-4 md:p-6">
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-4 md:p-6 border border-white/20">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-display text-primary">Your Journey Map</h2>
                 <motion.button
@@ -598,7 +598,7 @@ const HowToReach = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl"
+            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20"
           >
             <h3 className="text-2xl font-display text-primary mb-4 flex items-center">
               <span className="text-3xl mr-3">📍</span>
@@ -615,7 +615,7 @@ const HowToReach = () => {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl"
+            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20"
           >
             <h3 className="text-2xl font-display text-primary mb-4 flex items-center">
               <span className="text-3xl mr-3">💡</span>
