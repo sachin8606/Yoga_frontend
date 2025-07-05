@@ -299,12 +299,12 @@ const VideoTestimonials = () => {
 
       {/* Video Modal */}
       {selectedTestimonial && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[150] p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto my-8 relative"
+            className="bg-white rounded-2xl max-w-3xl w-full max-h-[85vh] relative overflow-hidden"
           >
             {/* Close Button - Make it more prominent and fixed position */}
             <button
@@ -316,19 +316,19 @@ const VideoTestimonials = () => {
               </svg>
             </button>
 
-            <div className="p-6 pt-12">
-              <div className="mb-6">
-                <h3 className="text-2xl font-serif text-ivory-900 mb-2">{selectedTestimonial.name}</h3>
-                <p className="text-primary font-medium">{selectedTestimonial.country} • {selectedTestimonial.program}</p>
-                <div className="flex items-center mt-2">
+            <div className="p-4 pt-10 h-full flex flex-col">
+              <div className="mb-3 flex-shrink-0">
+                <h3 className="text-xl font-serif text-ivory-900 mb-1">{selectedTestimonial.name}</h3>
+                <p className="text-primary font-medium text-sm">{selectedTestimonial.country} • {selectedTestimonial.program}</p>
+                <div className="flex items-center mt-1">
                   <div className="flex space-x-1 mr-3">
                     {renderStars(selectedTestimonial.rating)}
                   </div>
-                  <span className="text-sm text-ivory-600">{selectedTestimonial.date}</span>
+                  <span className="text-xs text-ivory-600">{selectedTestimonial.date}</span>
                 </div>
               </div>
               
-              <div className="aspect-video mb-6 rounded-lg overflow-hidden">
+              <div className="aspect-video mb-3 rounded-lg overflow-hidden flex-shrink-0">
                 <iframe
                   src={selectedTestimonial.videoUrl}
                   className="w-full h-full"
@@ -338,9 +338,11 @@ const VideoTestimonials = () => {
                 />
               </div>
               
-              <p className="text-ivory-700 font-light leading-relaxed italic text-lg">
-                "{selectedTestimonial.quote}"
-              </p>
+              <div className="flex-1 flex items-start">
+                <p className="text-ivory-700 font-light leading-relaxed italic text-base">
+                  "{selectedTestimonial.quote}"
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
