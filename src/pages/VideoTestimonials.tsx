@@ -299,33 +299,33 @@ const VideoTestimonials = () => {
 
       {/* Video Modal */}
       {selectedTestimonial && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto my-8 relative"
           >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h3 className="text-2xl font-serif text-ivory-900 mb-2">{selectedTestimonial.name}</h3>
-                  <p className="text-primary font-medium">{selectedTestimonial.country} • {selectedTestimonial.program}</p>
-                  <div className="flex items-center mt-2">
-                    <div className="flex space-x-1 mr-3">
-                      {renderStars(selectedTestimonial.rating)}
-                    </div>
-                    <span className="text-sm text-ivory-600">{selectedTestimonial.date}</span>
+            {/* Close Button - Make it more prominent and fixed position */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 transition-all duration-200 shadow-lg"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="p-6 pt-12">
+              <div className="mb-6">
+                <h3 className="text-2xl font-serif text-ivory-900 mb-2">{selectedTestimonial.name}</h3>
+                <p className="text-primary font-medium">{selectedTestimonial.country} • {selectedTestimonial.program}</p>
+                <div className="flex items-center mt-2">
+                  <div className="flex space-x-1 mr-3">
+                    {renderStars(selectedTestimonial.rating)}
                   </div>
+                  <span className="text-sm text-ivory-600">{selectedTestimonial.date}</span>
                 </div>
-                <button
-                  onClick={closeModal}
-                  className="text-ivory-500 hover:text-ivory-700 transition-colors"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
               </div>
               
               <div className="aspect-video mb-6 rounded-lg overflow-hidden">
